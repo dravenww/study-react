@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import * as React from 'react'
 import './App.css';
 
 function App() {
+  const [count, setCount] = React.useState(['a', 'b', 'c', 'd']);
+  const handler = React.useCallback(function () {
+    setCount(['a', 'c', 'b', 'd', 'e'])
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <section>
+        <div onClick={handler}>
+          handle
+        </div>
+        <ul>
+          {count.map((item, index) => {
+            return <li key={item}>{item}</li>
+          })}
+        </ul>
+      </section>
   );
 }
 
 export default App;
+
+
